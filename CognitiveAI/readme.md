@@ -21,18 +21,18 @@
 > Criar um modelo para estimar a qualidade do vinho. Informação sobre os atributos.
 >
 > Variáveis input (baseado em testes físico-químicos):
-1. **Type:** Vinho Tinto (_Red_) e Vinho Branco (_White_)
-1. **Fixed acidity:** Maioria dos ácidos envolvidos no vinho ou fixa ou não volátil (não evapora rapidamente).
-1. **Volatile acidity:** Quantidade de ácido acético no vinho, que em níveis muito altos pode levar a um sabor desagradável de vinagre.
-1. **Citric acid:** Encontrado em pequenas quantidades, o ácido cítrico pode adicionar 'frescura' e sabor aos vinhos.
-1. **Residual sugar:** Quantidade de açúcar restante após a fermentação é interrompida, é raro encontrar vinhos com menos de 1 grama / litro e vinhos com mais de 45 gramas / litro são considerados doces.
-1. **Chlorides:** Quantidade de sal no vinho.
-1. **Free sulfur dioxide:** Forma livre de SO2 existe em equilíbrio entre o SO2 molecular (como um gás dissolvido) e o íon bissulfito; impede o crescimento microbiano e a oxidação do vinho.
-1. **Total sulfur dioxide:** Quantidade de formas livres e ligadas de S02; em baixas concentrações, o SO2 é principalmente indetectável no vinho, mas em concentrações livres de SO2 acima de 50 ppm, o SO2 se torna evidente no nariz e no sabor do vinho.
-1. **Density:** Densidade do líquido é próxima à da água, dependendo da porcentagem de álcool e açúcar.
-1. **pH:** Descreve como um vinho é ácido ou básico em uma escala de 0 (muito ácido) a 14 (muito básico); a maioria dos vinhos tem entre 3-4 na escala de pH
-1. **Sulphates:** aditivo para vinho que pode contribuir para os níveis de gás dióxido de enxofre (S02), que atua como antimicrobiano e antioxidante.
-1. **Alcohol:** Percentual de teor alcoólico do vinho.
+> 1. **Type:** Vinho Tinto (_Red_) e Vinho Branco (_White_)
+> 1. **Fixed acidity:** Maioria dos ácidos envolvidos no vinho ou fixa ou não volátil (não evapora rapidamente).
+> 1. **Volatile acidity:** Quantidade de ácido acético no vinho, que em níveis muito altos pode levar a um sabor desagradável de vinagre.
+> 1. **Citric acid:** Encontrado em pequenas quantidades, o ácido cítrico pode adicionar 'frescura' e sabor aos vinhos.
+> 1. **Residual sugar:** Quantidade de açúcar restante após a fermentação é interrompida, é raro encontrar vinhos com menos de 1 grama / litro e vinhos com mais de 45 gramas / litro são considerados doces.
+> 1. **Chlorides:** Quantidade de sal no vinho.
+> 1. **Free sulfur dioxide:** Forma livre de SO2 existe em equilíbrio entre o SO2 molecular (como um gás dissolvido) e o íon bissulfito; impede o crescimento microbiano e a oxidação do vinho.
+> 1. **Total sulfur dioxide:** Quantidade de formas livres e ligadas de S02; em baixas concentrações, o SO2 é principalmente indetectável no vinho, mas em concentrações livres de SO2 acima de 50 ppm, o SO2 se torna evidente no nariz e no sabor do vinho.
+> 1. **Density:** Densidade do líquido é próxima à da água, dependendo da porcentagem de álcool e açúcar.
+> 1. **pH:** Descreve como um vinho é ácido ou básico em uma escala de 0 (muito ácido) a 14 (muito básico); a maioria dos vinhos tem entre 3-4 na escala de pH
+> 1. **Sulphates:** aditivo para vinho que pode contribuir para os níveis de gás dióxido de enxofre (S02), que atua como antimicrobiano e antioxidante.
+> 1. **Alcohol:** Percentual de teor alcoólico do vinho.
 >
 > Variável output (baseado em dado sensorial)
 1. **Quality:** pontuação entre 0 e 10.
