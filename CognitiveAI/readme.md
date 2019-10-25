@@ -959,7 +959,7 @@ plt.show()
 ```
 
 
-![png](CognitiveAI_files/CognitiveAI_24_0.png)
+![png](_img/CognitiveAI_24_0.png)
 
 
 
@@ -1435,7 +1435,7 @@ plt.show()
 ```
 
 
-![png](CognitiveAI_files/CognitiveAI_34_0.png)
+![png](_img/CognitiveAI_34_0.png)
 
 
 Acima vemos a distribuição de todas as colunas. Observamos que na coluna "type" a quantidade de amostras para o vinho branco é quase 4x maior em comparação com o vinho vermelho, mostrando o desbalanceamento entre as classes. As colunas "density", "alcohol" e "pH" estão bem distribuídas. Vemos [caudas longas](https://pt.m.wikipedia.org/wiki/Cauda_longa) nas colunas "chlorides" e "residual sugar". Em "quality" não conseguimos ver muito bem a distribuição para cada classe. Nos demais gráficos vemos as distribuições sendo empurradas para a esquerda por outliers.
@@ -1466,7 +1466,7 @@ plt.show()
 ```
 
 
-![png](CognitiveAI_files/CognitiveAI_37_0.png)
+![png](_img/CognitiveAI_37_0.png)
 
 
 Com o campo 'quality', foram contadas quantas amostras por categoria de qualidade. A maioria das amostras está entre os níveis 5, 6 e 7. Há poucas amostras para os demais níveis. Tendo isto em vista, espera-se que o modelo performe melhor para os níveis 5-7 e, devido a baixa quantidade de explares, pode não performar muito bem para os níveis 3-4 e 8-9
@@ -1506,7 +1506,7 @@ plt.show()
 ```
 
 
-![png](CognitiveAI_files/CognitiveAI_41_0.png)
+![png](_img/CognitiveAI_41_0.png)
 
 
 Para os campos que apresentaram aspecto de cauda longa aplicou-se função logarítmica e função quadrática para os demais, afim de melhorar a visualização e distribuição dos dados.
@@ -1540,7 +1540,7 @@ plt.show()
 ```
 
 
-![png](CognitiveAI_files/CognitiveAI_46_0.png)
+![png](_img/CognitiveAI_46_0.png)
 
 
 Acima temos um resumo dos histogramas e gráficos bivariados, onde é possível visualizar o sentido das correlações. Complementando a influência das variáveis na qualidade, "alcohol" influencia moderada e positivamente a qualidade do vinho, ou seja, quanto maior o teor alcoólico maior tende a ser a qualidade do vinho; em contra partida "density" e "chlorides" influenciam fraca e negativamente, o que nos leva a crer que vinhos com mais densidade ou mais sal tendem a perder em qualidade.
