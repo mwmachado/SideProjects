@@ -59,7 +59,7 @@ Fonte: [blog](https://blog.famigliavalduga.com.br/afinal-o-que-e-vinho-verde/ "V
 ### Bibliotecas
 
 
-```
+```python
 import time # Tarefas relacionadas a tempo
 
 import numpy as np # Operações com vetores e matrizes
@@ -98,7 +98,7 @@ warnings.filterwarnings("ignore")
 ### Funções
 
 
-```
+```python
 def KBestTable(sel, df, features):
   '''Função para ranquear os atributos de um dataset.
 
@@ -133,7 +133,7 @@ help(KBestTable)
 
 
 
-```
+```python
 def clfs_train_test(clf, param, x_train, x_test, y_train, y_test):
     ''' Função para treinamento e teste de modelos com hiperparametrização.
     Args:
@@ -218,29 +218,13 @@ help(clfs_train_test)
 ## Dataset
 
 
-```
+```python
 df = pd.read_csv('/content/sample_data/winequality.csv', sep=";")
   # Transformando csv para dataset
 df.head() # Primeiras linhas do dataset
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -345,10 +329,7 @@ df.head() # Primeiras linhas do dataset
 </table>
 </div>
 
-
-
-
-```
+```python
 df.info() # Informações do conjunto de dados
 ```
 
@@ -375,27 +356,11 @@ df.info() # Informações do conjunto de dados
 Primeiro, vamos dar uma olhada no conjunto de dados (_dataset_). Vemos que o mesmo possui aproximadamente 6500 amostras de vinhos, com 13 características descritas acima. Sendo 10 delas números com decimais (float), 2 campos contendo texto (object) e 1 contendo apenas números inteiros (int64). Aparentemente, não há valores faltantes e, devido ao baixo consumo de memória, não será realizado otimização de tipo de dados para esse dataset.
 
 
-```
+```python
 df.describe(include='all') # Descrição das colunas
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -596,10 +561,7 @@ df.describe(include='all') # Descrição das colunas
 </table>
 </div>
 
-
-
-
-```
+```python
 # df.alcohol = df.alcohol.astype('float64') # Erro de tipo
 alcohol_fix = lambda x: x if x.count('.') < 2 else '.'.join(x.split('.')[:2])
   # Função para ajustar o erro (e.g. '128.933.333.333.333' -> 128.933)
@@ -610,23 +572,7 @@ df.type = df.type.astype('category').cat.codes
 df[['type', 'alcohol']].describe(include='all') # Checando transformações
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -687,7 +633,7 @@ Para os campos numéricos foram apresentadas as médias (mean), desvio padrão (
 O campo "alcohol" trata-se do teor alcoólico da amostra e, portanto, espera-se que esse campo seja númerico. Durante a transformação, foram observados valores que impediam o processo (e.g. '128.933.333.333.333'). Foi criada uma função para ajuste desses valores e na sequência o campo foi transformado para float64.
 
 
-```
+```python
 print('Porcentagem de valores com teor alcoólico acima de 100%: {}%'.\
       format(round(len(df[df.alcohol > 100].index)/len(df)*100, 2)))
   # Porcentagem de valores de teor alcoólico acima de 100%
@@ -697,12 +643,12 @@ print('Porcentagem de valores com teor alcoólico acima de 100%: {}%'.\
 
 
 
-```
+```python
 df.drop(df[df.alcohol > 100].index, inplace=True) # Remoção dos valores acima
 ```
 
 
-```
+```python
 print('Porcentagem de valores de densidade acima de 10: {}%'.\
       format(round(len(df[df.density > 10].index)/len(df)*100, 2)))
   # Porcentagem de valores de densidade acima de 10
@@ -712,14 +658,14 @@ print('Porcentagem de valores de densidade acima de 10: {}%'.\
 
 
 
-```
+```python
 df.drop(df[df.density > 10].index, inplace=True) # Remoção dos valores acima
 ```
 
 Observando o detalhamento das colunas "alcohol" e "density" nota-se que existem valores elevados o suficiente para não fazerem sentido de acordo com a descrição do campo. Porcentagens alcoólicas acima de 100% (0,62% dos casos) e valores de densidades muito alto (2,09% dos casos) foram considerados inconsistentes. Assim, os valores elencados serão removidos do dataset para não influenciarem negativamente no modelo.
 
 
-```
+```python
 any(df.duplicated()) # Busca por duplicados
 ```
 
@@ -731,7 +677,7 @@ any(df.duplicated()) # Busca por duplicados
 
 
 
-```
+```python
 df[df.duplicated(keep=False)]\
   .sort_values(['type','fixed acidity','volatile acidity'])\
   .head(10) # Exemplos de registros duplicados
@@ -741,19 +687,6 @@ df[df.duplicated(keep=False)]\
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -941,14 +874,14 @@ df[df.duplicated(keep=False)]\
 
 
 
-```
+```python
 df.drop_duplicates(inplace=True) # Remoção de duplicados
 ```
 
 Registros duplicados foram analisados e removidos.
 
 
-```
+```python
 scaler = StandardScaler() # Normalizador de valores
 numerics = df.drop(['type', 'quality'], axis=1)
   # Novo dataset apenas com colunas numéricas
@@ -963,27 +896,11 @@ plt.show()
 
 
 
-```
+```python
 numerics[numerics.chlorides > 9] # Outliers em chlorides
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1174,30 +1091,11 @@ numerics[numerics.chlorides > 9] # Outliers em chlorides
 </table>
 </div>
 
-
-
-
-```
+```python
 numerics[numerics.sulphates > 9] # Outliers em chlorides
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1262,30 +1160,11 @@ numerics[numerics.sulphates > 9] # Outliers em chlorides
 </table>
 </div>
 
-
-
-
-```
+```python
 numerics[numerics['citric acid'] > 9] # Outlier em free sulfur dioxide
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1322,30 +1201,11 @@ numerics[numerics['citric acid'] > 9] # Outlier em free sulfur dioxide
 </table>
 </div>
 
-
-
-
-```
+```python
 numerics[numerics['free sulfur dioxide'] > 9] # Outlier em free sulfur dioxide
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1382,10 +1242,7 @@ numerics[numerics['free sulfur dioxide'] > 9] # Outlier em free sulfur dioxide
 </table>
 </div>
 
-
-
-
-```
+```python
 outliers = [745,4745,4984,4979,4981,4990,5004,5049,
             5156,5349,5590,5652,5949,6158,6217,6268] # Outliers identificados
 df.drop(outliers, inplace=True) # Remoção dos outliers
@@ -1399,7 +1256,7 @@ De acordo com o site [r-statistics](https://www.r-statistics.com/), um _outlier_
 Devido a grande quantidade de outliers identificados, de acordo com a técnica boxplot, serão considerados apenas aqueles que estiverem acima de 9 variações. Estes pontos serão removidos para não impactarem negativamente no modelo.
 
 
-```
+```python
 df.info() # Informações após as trasnformações
 ```
 
@@ -1428,7 +1285,7 @@ Após várias transformações, o dataset final ficou com 5171 amostras e todos 
 ### Análise Univariada
 
 
-```
+```python
 sns.set() # Setando estilo do seaborn para os gráficos
 df.hist(figsize=(10,10)) # Gráficos de Histogramas para cada coluna
 plt.show()
@@ -1441,7 +1298,7 @@ plt.show()
 Acima vemos a distribuição de todas as colunas. Observamos que na coluna "type" a quantidade de amostras para o vinho branco é quase 4x maior em comparação com o vinho vermelho, mostrando o desbalanceamento entre as classes. As colunas "density", "alcohol" e "pH" estão bem distribuídas. Vemos [caudas longas](https://pt.m.wikipedia.org/wiki/Cauda_longa) nas colunas "chlorides" e "residual sugar". Em "quality" não conseguimos ver muito bem a distribuição para cada classe. Nos demais gráficos vemos as distribuições sendo empurradas para a esquerda por outliers.
 
 
-```
+```python
 df.quality.value_counts().sort_index() # contagem de amostras por qualidade
 ```
 
@@ -1460,7 +1317,7 @@ df.quality.value_counts().sort_index() # contagem de amostras por qualidade
 
 
 
-```
+```python
 df.quality.value_counts().sort_index().plot.bar() # Gráfico de barras
 plt.show()
 ```
@@ -1472,20 +1329,14 @@ plt.show()
 Com o campo 'quality', foram contadas quantas amostras por categoria de qualidade. A maioria das amostras está entre os níveis 5, 6 e 7. Há poucas amostras para os demais níveis. Tendo isto em vista, espera-se que o modelo performe melhor para os níveis 5-7 e, devido a baixa quantidade de explares, pode não performar muito bem para os níveis 3-4 e 8-9
 
 
-```
+```python
 # Cógigo utilizado para auxiliar nas transformações de campos abaixo
 # a = df.copy()
 # df = a.copy()
 # df[df.isin([np.nan, np.inf, -np.inf]).any(1)]
 ```
 
-
-```
-
-```
-
-
-```
+```python
 # Aplicação de função logarítmica
 df.chlorides = df.chlorides.apply(np.log) 
 df['residual sugar'] = df['residual sugar'].apply(np.log)
@@ -1514,7 +1365,7 @@ Para os campos que apresentaram aspecto de cauda longa aplicou-se função logar
 ### Análise Bivariada
 
 
-```
+```python
 corr_matrix = df.drop('type', axis=1).corr().abs() # Matriz de correlação
 plt.figure(figsize=(10,10)) # Dimensionamento da figura
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm') # Mapa de calor + Matriz
@@ -1522,7 +1373,7 @@ plt.show()
 ```
 
 
-![png](CognitiveAI_files/CognitiveAI_44_0.png)
+![png](_img/CognitiveAI_44_0.png)
 
 
 Utilizamos uma matriz de correlação para auxiliar no estudo da influência de uma variável nas outras (correlação).  
@@ -1532,7 +1383,7 @@ Vale ressaltar que, de acordo com a matriz, os campos que mais influenciam a qua
 
 
 
-```
+```python
 # correlations = ['type', 'volatile acidity', 'citric acid', 'pH', 'sulphates']
 # sns.pairplot(df.drop(correlations, axis=1), kind="reg")
 sns.pairplot(df, kind="reg") # Gráficos combinados
@@ -1550,7 +1401,7 @@ Acima temos um resumo dos histogramas e gráficos bivariados, onde é possível 
 ## Modelagem
 
 
-```
+```python
 seed = 0 # Semente aleatória
 x = df.drop('quality', axis=1) # Variáveis de entrada
 y = df.quality # Variáveis de saída
@@ -1559,7 +1410,7 @@ y = df.quality # Variáveis de saída
 Na fase de modelagem, primeiro vamos definir uma semente aleatória para garantir reproducibilidade do processo. Na sequência, iremos separar as colunas em variáveis de entrada e variável de saída.
 
 
-```
+```python
 sel = SelectKBest(f_classif, k = 'all').fit(x, y) #Seletor de melhores variáveis
 KBestTable(sel, x, x.columns) # Tabela de melhores variáveis
 ```
@@ -1587,7 +1438,7 @@ Utilizou-se o módulo SelectKBest para ordenar as colunas por importância em re
 Também foi adicionado o módulo SelectKBest ao modelo, tornando-o uma sequência de passos (pipeline). Este módulo permite treinarmos o modelo com um número diferente de variáveis, já que uma maior quantidade de colunas não necessariamente melhora as previsões, podendo até confundi-lo em alguns casos.
 
 
-```
+```python
 # Modelos
 clf1 = GaussianNB()
 clf2 = DecisionTreeClassifier(random_state=seed)
@@ -1810,29 +1661,13 @@ Para o modelo, foram testados GaussianNB, DecisionTree, RandomForest, MLP, KNN, 
 
 
 
-```
+```python
 ordenado = ['nome', 'best_score', 'score_treino', 'tempo_treino']
 pd.DataFrame(summary, columns=ordenado)\
   .sort_values('score_treino', ascending=False)
 ```
 
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1938,64 +1773,6 @@ Ainda que os dados e modelos tenham passado por todos esses diversos processos, 
 + <https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/f-statistic-value-test/>
 
 ---
-
-## Extras
-
-
-```
-# pandas-profiling não utilizado para uma melhor descrição e guia das análises
-
-# !pip install -U pandas-profiling
-# import pandas_profiling
-# profile = df.profile_report()
-# df.profile_report(style={'full_width':True})
-```
-
-
-```
-#Abordagem com deep learning não utilizada devido a baixa quantidade de amostras
-
-# !pip install -U tensorflow
-
-# import tensorflow as tf
-# print(tf.__version__)
-
-# from sklearn.model_selection import train_test_split 
-# label = 'quality'
-# X = df.drop([label, 'type'], axis=1)
-# # X.type[X.type == 'White'] = 1
-# # X.type[X.type == 'Red'] = 0
-# y = encoder.fit_transform(df[[label]])
-# X_train, X_test, y_train, y_test = train_test_split( 
-#            X, y, test_size = 0.2, random_state = 42) 
-
-# import tensorflow as tf
-# from tensorflow import keras
-
-# model = keras.Sequential([
-#     keras.layers.Dense(11, activation ='relu', input_shape =(11, )),
-#     keras.layers.Dense(9, activation ='relu'),
-#     keras.layers.Dense(7, activation ='sigmoid')
-# ])
-
-# model.output_shape 
-# model.summary() 
-# model.get_config() 
-  
-# # List all weight tensors 
-# model.get_weights() 
-# model.compile(loss ='sparse_categorical_crossentropy',  
-#   optimizer ='adam', metrics =['accuracy']) 
-
-# from sklearn.preprocessing import LabelBinarizer
-# encoder = LabelBinarizer()
-# transfomed_label = encoder.fit_transform(y)
-# transfomed_label
-
-# model.fit(X_train, y_train, epochs = 3, 
-#            batch_size = 1, verbose = 1) 
-   
-# # Predicting the Value 
 # y_pred = model.predict(X_test) 
 # print(y_pred)
 ```
