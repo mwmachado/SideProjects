@@ -43,7 +43,7 @@
 
 ## Introdução
 
-![vinhos](_img/CognitiveAI_12_0.jpeg)
+![vinhos](_img/CognitiveAI_12_0.png)
 
 Os vinhos verdes recebem esse nome não por sua coloração, que por sinal não é verde, mas sim por serem produzidos exclusivamente em uma região específica no noroeste de Portugal, conhecida como "Os Jardins de Portugal".
 Alguns enófilos apontam que esse vinho recebe esse nome por causa da sua alta acidez, remetendo ao perfil ácido das uvas produzidas na região.
