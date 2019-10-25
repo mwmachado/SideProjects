@@ -43,7 +43,7 @@
 
 ## Introdução
 
-![vinhos](https://images.unsplash.com/photo-1568213816046-0ee1c42bd559)
+![vinhos](_img/CognitiveAI_12_0.jpeg)
 
 Os vinhos verdes recebem esse nome não por sua coloração, que por sinal não é verde, mas sim por serem produzidos exclusivamente em uma região específica no noroeste de Portugal, conhecida como "Os Jardins de Portugal".
 Alguns enófilos apontam que esse vinho recebe esse nome por causa da sua alta acidez, remetendo ao perfil ácido das uvas produzidas na região.
@@ -1771,10 +1771,5 @@ Ainda que os dados e modelos tenham passado por todos esses diversos processos, 
 + <https://drive.google.com/open?id=1-oG5-kBt9xQ3Li4PEexpiA9_7RZhRM1f>
 + <https://s3.amazonaws.com/udacity-hosted-downloads/ud651/wineQualityInfo.txt>
 + <https://www.statisticshowto.datasciencecentral.com/probability-and-statistics/f-statistic-value-test/>
-
----
-# y_pred = model.predict(X_test) 
-# print(y_pred)
-```
 
 ---
