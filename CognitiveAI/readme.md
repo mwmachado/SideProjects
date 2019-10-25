@@ -35,7 +35,7 @@
 > 1. **Alcohol:** Percentual de teor alcoólico do vinho.
 >
 > Variável output (baseado em dado sensorial)
-1. **Quality:** pontuação entre 0 e 10.
+> 1. **Quality:** pontuação entre 0 e 10.
 >
 > (CognitiveAI e [Udacity](https://s3.amazonaws.com/udacity-hosted-downloads/ud651/wineQualityInfo.txt "Udacity"))
 
